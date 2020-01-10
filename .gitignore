@@ -1,0 +1,9 @@
+*.log
+/.history
+/.idea
+!/.idea/codeStyles/codeStyleConfig.xml
+!/.idea/codeStyles/Project.xml
+/dist
+/node_modules
+/temp
+/.eslintcache

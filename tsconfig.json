@@ -1,0 +1,10 @@
+{
+  "extends": "@wavevision/coding-standard/ts/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "commonjs",
+    "resolveJsonModule": false,
+    "target": "es5"
+  },
+  "include": ["./*.js", "./src/**/*"]
+}
