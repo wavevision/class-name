@@ -1,5 +1,8 @@
 import { USE_VALUE } from '../constants';
-import { ModifiersCallback } from '../types';
+import { Modifiers, ModifiersCallback } from '../types';
+
+export const filter = (modifiers: Modifiers): string[] =>
+  modifiers.filter(m => m !== null) as string[];
 
 const processModifiers = <P = {}>(
   modifiersCallback: ModifiersCallback<P>,

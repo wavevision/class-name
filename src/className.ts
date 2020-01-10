@@ -1,4 +1,4 @@
-import processModifiers from './utils/processModifiers';
+import processModifiers, { filter } from './utils/processModifiers';
 import composeClassNames, { join } from './utils/composeClassNames';
 import { ELEMENT_DELIMITER, SUB_BLOCK_DELIMITER } from './constants';
 import { ClassNameFormatter, ModifiersCallback } from './types';
@@ -12,7 +12,9 @@ const className = <P = {}>(
     if (typeof modifiersCallback === 'function') {
       modifiers = Array.from(
         new Set(
-          processModifiers<P>(modifiersCallback, props).concat(...modifiers),
+          processModifiers<P>(modifiersCallback, props).concat(
+            ...filter(modifiers),
+          ),
         ),
       );
     }

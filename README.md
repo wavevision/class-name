@@ -67,7 +67,8 @@ const Component: FunctionComponent<ComponentProps> = props => {
           className.extra(props.align, 'text'),
         )}
       />
-      <div className={className.element('element')} />
+      // modifiers can be nullable and will be used only if not null
+      <div className={className.element('element', props.nullableProp)} />
       <div className={className.element('another', 'element-modifier')} />
     </div>
   );

@@ -25,15 +25,17 @@ describe('class-name/className', () => {
       const newTestClassName = testClassName.create('new-class', false, true);
       expect(newTestClassName.block()).toEqual('new-class');
       const anotherTestClassName = testClassName.create('sub');
-      expect(anotherTestClassName.block('modifier')).toEqual(
+      expect(anotherTestClassName.block(null, 'modifier')).toEqual(
         'test-class-sub test-class-sub--custom test-class-sub--modifier',
       );
     });
   });
   describe('element', () => {
     it('returns element class name', () => {
-      expect(testClassName.element('element', 'something')).toEqual(
-        'test-class__element test-class__element--something',
+      expect(
+        testClassName.element('element', 'something', null, 'hello'),
+      ).toEqual(
+        'test-class__element test-class__element--something test-class__element--hello',
       );
     });
   });
