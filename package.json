@@ -1,6 +1,6 @@
 {
   "name": "@wavevision/class-name",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Create and format BEM class names for React components.",
   "keywords": [
     "typescript",
