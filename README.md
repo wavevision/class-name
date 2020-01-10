@@ -29,6 +29,7 @@ import React, { FunctionComponent } from 'react';
 import className, { USE_VALUE } from '@wavevision/class-name';
 
 interface ComponentProps {
+  align: string;
   booleanProp: boolean;
   nullableProp: string | null;
   stringProp: string;
@@ -61,7 +62,8 @@ const Component: FunctionComponent<ComponentProps> = props => {
       <div
         className={className.compose(
           className.element('child'),
-          className.extra('utility-class'),
+          // extra class name with optional prefix (e.g. Bootstrap text utility)
+          className.extra(props.align, 'text'),
         )}
       />
       <div className={className.element('element')} />
@@ -74,7 +76,12 @@ const Component: FunctionComponent<ComponentProps> = props => {
 will output following when rendered
 
 ```typescript jsx
-<Component booleanProp={true} nullableProp={null} stringProp="something" />
+<Component
+  align="right"
+  booleanProp={true}
+  nullableProp={null}
+  stringProp="something"
+/>
 ```
 
 ```html
@@ -82,7 +89,7 @@ will output following when rendered
   class="component-class component-class--boolean-prop component-class--something component-class--inline-modifier"
 >
   <div class="another-class"></div>
-  <div class="component-class__child utility-class"></div>
+  <div class="component-class__child text-right"></div>
   <div class="component-class__element"></div>
   <div
     class="component-class__another component-class__another--element-modifier"
