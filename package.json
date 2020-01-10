@@ -2,6 +2,14 @@
   "name": "@wavevision/class-name",
   "version": "0.3.0",
   "description": "Create and format BEM class names for React components.",
+  "keywords": [
+    "typescript",
+    "react",
+    "css",
+    "classname",
+    "classnames",
+    "bem"
+  ],
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -17,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wavevision/classname.git"
+    "url": "git+https://github.com/wavevision/class-name.git"
   },
   "bugs": {
-    "url": "https://github.com/wavevision/classname/issues"
+    "url": "https://github.com/wavevision/class-name/issues"
   },
-  "homepage": "https://github.com/wavevision/classname",
+  "homepage": "https://github.com/wavevision/class-name",
   "devDependencies": {
     "@types/jest": "^24.0.25",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
