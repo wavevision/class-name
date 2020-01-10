@@ -44,10 +44,20 @@ const componentClassName = className<ComponentProps>('component-class', () => ({
   customModifier: props => (props.nullableProp ? 'custom' : null),
 }));
 
+// We can also have modifiers defined only if some condition is met
+const anotherClassName = className<ComponentProps>('another-class', props => {
+  if (props.nullableProp !== null) {
+    // the whole set of modifiers will be created only if nullableProp is not null
+    return { stringProps: USE_VALUE, customModifier: () => true };
+  }
+});
+
 const Component: FunctionComponent<ComponentProps> = props => {
   const className = componentClassName(props);
+  const nextClassName = anotherClassName(props);
   return (
     <div className={className.block('inline-modifier')}>
+      <div className={nextClassName.block()} />
       <div
         className={className.compose(
           className.element('child'),
@@ -71,6 +81,7 @@ will output following when rendered
 <div
   class="component-class component-class--boolean-prop component-class--something component-class--inline-modifier"
 >
+  <div class="another-class"></div>
   <div class="component-class__child utility-class"></div>
   <div class="component-class__element"></div>
   <div

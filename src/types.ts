@@ -9,7 +9,7 @@ export type ModifiersCallbackResult<P> = Record<
 
 export type ModifiersCallback<P> = (
   props: P,
-) => Partial<ModifiersCallbackResult<P>>;
+) => Partial<ModifiersCallbackResult<P>> | void;
 
 export interface ClassNameFormatter<P> {
   readonly baseClass: string;

@@ -6,7 +6,7 @@ const processModifiers = <P = {}>(
   props: P,
 ): string[] => {
   const modifiers: string[] = [];
-  const result = modifiersCallback(props);
+  const result = modifiersCallback(props) || {};
   for (const k in result) {
     const v = result[k];
     if (v === true && props[k as keyof P]) {

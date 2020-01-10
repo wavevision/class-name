@@ -14,7 +14,18 @@ const testProps: TestProps = {
 };
 
 describe('class-name/utils/processModifiers', () => {
-  describe('callback result is boolean', () => {
+  describe('callback result is void', () => {
+    it('returns empty array', () => {
+      expect(
+        processModifiers(props => {
+          if (props.nullableProp) {
+            return {};
+          }
+        }, testProps),
+      ).toEqual([]);
+    });
+  });
+  describe('callback result is defined', () => {
     it('uses modifier key', () => {
       expect(
         processModifiers<TestProps>(
