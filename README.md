@@ -17,7 +17,7 @@ yarn add @wavevision/class-name
 or [npm](https://npmjs.com)
 
 ```bash
-npm install --save @wavevisio/class-name
+npm install --save @wavevision/class-name
 ```
 
 ## Usage
