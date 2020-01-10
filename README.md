@@ -69,7 +69,7 @@ will output following when rendered
 
 ```html
 <div
-  class="component-class component-class--boolean-prop component-class--something"
+  class="component-class component-class--boolean-prop component-class--something component-class--inline-modifier"
 >
   <div class="component-class__child utility-class"></div>
   <div class="component-class__element"></div>
