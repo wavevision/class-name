@@ -7,32 +7,43 @@ interface TestProps {
   nullableProp: string | null;
 }
 
+interface TestState {
+  visible: boolean;
+}
+
 const testProps: TestProps = {
   someProp: true,
   someOtherProp: 'one',
   nullableProp: null,
 };
 
+const testState: TestState = { visible: true };
+
 describe('class-name/utils/processModifiers', () => {
   describe('callback result is void', () => {
     it('returns empty array', () => {
       expect(
-        processModifiers(props => {
-          if (props.nullableProp) {
-            return {};
-          }
-        }, testProps),
+        processModifiers(
+          props => {
+            if (props.nullableProp) {
+              return {};
+            }
+          },
+          testProps,
+          {},
+        ),
       ).toEqual([]);
     });
   });
   describe('callback result is defined', () => {
     it('uses modifier key', () => {
       expect(
-        processModifiers<TestProps>(
-          () => ({ someProp: true, nullableProp: true }),
+        processModifiers<TestProps, TestState>(
+          () => ({ someProp: true, nullableProp: true, visible: true }),
           testProps,
+          testState,
         ),
-      ).toEqual(['someProp']);
+      ).toEqual(['someProp', 'visible']);
     });
     it('uses modifier function return value', () => {
       expect(
@@ -43,6 +54,7 @@ describe('class-name/utils/processModifiers', () => {
             omittedCustomModifier: props => props.nullableProp !== null,
           }),
           testProps,
+          {},
         ),
       ).toEqual(['customModifier', 'use-this']);
     });
@@ -54,6 +66,7 @@ describe('class-name/utils/processModifiers', () => {
             nullableProp: USE_VALUE,
           }),
           testProps,
+          {},
         ),
       ).toEqual(['one']);
     });

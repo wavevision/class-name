@@ -1,8 +1,14 @@
 import className from '../className';
 
 describe('class-name/className', () => {
+  describe('no props and state', () => {
+    it('returns class name only', () => {
+      const otherClassName = className('other-class')();
+      expect(otherClassName.block()).toBe('other-class');
+    });
+  });
   const cn = className('test-class', () => ({ custom: () => 'custom' }));
-  const testClassName = cn({});
+  const testClassName = cn({}, {});
   describe('block', () => {
     it('returns block class name', () => {
       expect(testClassName.block('something')).toEqual(

@@ -25,7 +25,7 @@ npm install --save @wavevision/class-name
 Simple React component
 
 ```typescript jsx
-import React, { FunctionComponent } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import className, { USE_VALUE } from '@wavevision/class-name';
 
 interface ComponentProps {
@@ -35,28 +35,44 @@ interface ComponentProps {
   stringProp: string;
 }
 
-// Define base class name and modifiers factory callback
-const componentClassName = className<ComponentProps>('component-class', () => ({
-  // if prop value is truthy, 'booleanProp' will be used as modifier
-  booleanProp: true,
-  // if prop value is truthy then the value will be used
-  stringProp: USE_VALUE,
-  // if nullableProp not null, use 'custom' as modifier
-  // if a non-string truthy value is returned, 'customModifier' will be used
-  customModifier: props => (props.nullableProp ? 'custom' : null),
-}));
+interface ComponentState {
+  visible: boolean;
+}
+
+// Define base class name with props and state behaving as modifiers
+const componentClassName = className<ComponentProps, ComponentState>(
+  'component-class',
+  () => ({
+    // if booleanProp value is truthy, 'booleanProp' will be used as modifier
+    booleanProp: true,
+    // if stringProp value is truthy then the value will be used
+    stringProp: USE_VALUE,
+    // use callback for custom modifiers, string returned will be used
+    customModifier: props => (props.nullableProp ? 'custom' : null),
+    // if a non-string truthy value is returned, key will be used
+    anotherModifier: (props, state) => state.visible,
+  }),
+);
 
 // We can also have modifiers defined only if some condition is met
-const anotherClassName = className<ComponentProps>('another-class', props => {
-  if (props.nullableProp !== null) {
-    // the whole set of modifiers will be created only if nullableProp is not null
-    return { stringProps: USE_VALUE, customModifier: () => true };
-  }
-});
+const anotherClassName = className<ComponentProps, ComponentState>(
+  'another-class',
+  (props, state) => {
+    if (props.nullableProp !== null) {
+      // the whole set of modifiers will be created only if nullableProp is not null
+      return { stringProps: USE_VALUE, customModifier: () => true };
+    }
+    if (state.visible) {
+      // this set will be created only if state.visible is true
+      return { customModifier: () => true };
+    }
+  },
+);
 
 const Component: FunctionComponent<ComponentProps> = props => {
-  const className = componentClassName(props);
-  const nextClassName = anotherClassName(props);
+  const [visible] = useState<ComponentState['visible']>(false);
+  const className = componentClassName(props, { visible });
+  const nextClassName = anotherClassName(props, { visible });
   return (
     <div className={className.block('inline-modifier')}>
       <div className={nextClassName.block()} />

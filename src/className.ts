@@ -3,16 +3,16 @@ import composeClassNames, { join } from './utils/composeClassNames';
 import { ELEMENT_DELIMITER, SUB_BLOCK_DELIMITER } from './constants';
 import { ClassNameFormatter, ModifiersCallback } from './types';
 
-const className = <P = {}>(
+const className = <P = {}, S = {}>(
   baseClass: string,
-  modifiersCallback?: ModifiersCallback<P>,
-) => (props: P): ClassNameFormatter<P> => ({
+  modifiersCallback?: ModifiersCallback<P, S>,
+) => (props = {} as P, state = {} as S): ClassNameFormatter<P, S> => ({
   baseClass,
   block: (...modifiers) => {
     if (typeof modifiersCallback === 'function') {
       modifiers = Array.from(
         new Set(
-          processModifiers<P>(modifiersCallback, props).concat(
+          processModifiers<P, S>(modifiersCallback, props, state).concat(
             ...filter(modifiers),
           ),
         ),
