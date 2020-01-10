@@ -2,9 +2,11 @@ import { MODIFIER_DELIMITER } from '../constants';
 
 import camelCaseToDash from './camelCaseToDash';
 
+export const join = (classNames: string[]): string => classNames.join(' ');
+
 const composeClassNames = (
   className: string,
-  modifiers: Array<string | null>,
+  modifiers: Array<string | null> = [],
 ): string => {
   const classNames = [className];
   const filtered: string[] = modifiers.filter(m => m !== null) as string[];
@@ -13,7 +15,7 @@ const composeClassNames = (
       `${className}${MODIFIER_DELIMITER}${camelCaseToDash(modifier)}`,
     );
   }
-  return classNames.join(' ');
+  return join(classNames);
 };
 
 export default composeClassNames;

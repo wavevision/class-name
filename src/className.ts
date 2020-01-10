@@ -1,5 +1,5 @@
 import processModifiers from './utils/processModifiers';
-import composeClassNames from './utils/composeClassNames';
+import composeClassNames, { join } from './utils/composeClassNames';
 import { ELEMENT_DELIMITER, SUB_BLOCK_DELIMITER } from './constants';
 import { ClassNameFormatter, ModifiersCallback } from './types';
 
@@ -18,7 +18,7 @@ const className = <P = {}>(
     }
     return composeClassNames(baseClass, modifiers);
   },
-  compose: (...classNames) => classNames.join(' '),
+  compose: (...classNames) => join(classNames),
   create: (newClass, subBlock = true, excludeModifiers = false) => {
     if (subBlock) {
       newClass = `${baseClass}${SUB_BLOCK_DELIMITER}${newClass}`;
