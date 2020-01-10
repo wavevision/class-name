@@ -35,6 +35,7 @@ interface ComponentProps {
   stringProp: string;
 }
 
+// Define base class name and modifiers factory callback
 const componentClassName = className<ComponentProps>('component-class', () => ({
   // if prop value is truthy, 'booleanProp' will be used as modifier
   booleanProp: true,
