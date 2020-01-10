@@ -64,7 +64,7 @@ const Component: FunctionComponent<ComponentProps> = props => {
 will output following when rendered
 
 ```typescript jsx
-<Component booleanProp={true} nullableProp={null} stringProp={'something'} />
+<Component booleanProp={true} nullableProp={null} stringProp="something" />
 ```
 
 ```html
