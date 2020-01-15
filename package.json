@@ -58,7 +58,7 @@
     "prettier": "prettier '**/*.ts' --check",
     "prettier:fix": "yarn prettier --write",
     "prepare": "npm run build",
-    "preversion": "run-s fix build",
+    "preversion": "npm run fix",
     "test": "jest",
     "test:coverage": "jest --coverage || true",
     "test:coverage:report": "jest --coverage && cat temp/coverage/lcov.info | coveralls",
