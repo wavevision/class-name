@@ -1,4 +1,5 @@
-# Wavevision Class Name
+<p align="center"><a href="https://github.com/wavevision"><img alt="Wavevision s.r.o." src="https://wavevision.com/images/wavevision-logo.png" width="120" /></a></p>
+<h1 align="center">Class Name</h1>
 
 [![Build Status](https://travis-ci.org/wavevision/class-name.svg?branch=master)](https://travis-ci.org/wavevision/class-name)
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/class-name/badge.svg?branch=master)](https://coveralls.io/github/wavevision/class-name?branch=master)
