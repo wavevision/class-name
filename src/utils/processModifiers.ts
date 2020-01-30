@@ -5,7 +5,7 @@ const inPropsOrState = <P, S>(props: P, state: S) => (v: unknown): unknown =>
   props[v as keyof P] || state[v as keyof S];
 
 export const filter = (modifiers: Modifiers): string[] =>
-  modifiers.filter(m => m !== null) as string[];
+  modifiers.filter(m => m != null) as string[];
 
 const processModifiers = <P = {}, S = {}>(
   modifiersCallback: ModifiersCallback<P, S>,

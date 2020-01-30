@@ -1,6 +1,6 @@
 import { USE_VALUE } from './constants';
 
-export type Modifiers = Array<string | null>;
+export type Modifiers = Array<string | null | undefined>;
 
 export type ModifierFunction<P, S> = (props: P, state: S) => unknown;
 

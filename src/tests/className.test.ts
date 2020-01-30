@@ -31,7 +31,7 @@ describe('class-name/className', () => {
       const newTestClassName = testClassName.create('new-class', false, true);
       expect(newTestClassName.block()).toEqual('new-class');
       const anotherTestClassName = testClassName.create('sub');
-      expect(anotherTestClassName.block(null, 'modifier')).toEqual(
+      expect(anotherTestClassName.block(undefined, 'modifier')).toEqual(
         'test-class-sub test-class-sub--custom test-class-sub--modifier',
       );
     });
