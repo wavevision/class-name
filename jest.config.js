@@ -1,4 +1,5 @@
 module.exports = {
+  cacheDirectory: '<rootDir>/temp/cache/jest',
   testMatch: ['<rootDir>/src/**/tests/*.test.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules'],
   moduleDirectories: ['node_modules', 'src'],
