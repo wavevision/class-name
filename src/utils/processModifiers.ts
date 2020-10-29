@@ -1,5 +1,5 @@
 import { USE_VALUE } from '../constants';
-import { Modifiers, ModifiersCallback } from '../types';
+import { Modifiers, ModifiersCallback, Props, State } from '../types';
 
 const inPropsOrState = <P, S>(props: P, state: S) => (v: unknown): unknown =>
   props[v as keyof P] || state[v as keyof S];
@@ -7,7 +7,7 @@ const inPropsOrState = <P, S>(props: P, state: S) => (v: unknown): unknown =>
 export const filter = (modifiers: Modifiers): string[] =>
   modifiers.filter(m => m != null) as string[];
 
-const processModifiers = <P = {}, S = {}>(
+const processModifiers = <P = Props, S = State>(
   modifiersCallback: ModifiersCallback<P, S>,
   props: P,
   state: S,

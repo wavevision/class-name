@@ -1,9 +1,4 @@
 module.exports = {
-  globals: {
-    'ts-jest': {
-      isolatedModules: true,
-    },
-  },
   testMatch: ['<rootDir>/src/**/tests/*.test.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules'],
   moduleDirectories: ['node_modules', 'src'],
@@ -17,4 +12,9 @@ module.exports = {
     '!**/node_modules/**',
   ],
   preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+    },
+  },
 };
