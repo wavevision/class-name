@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/wavevision/class-name/badge.svg?branch=master)](https://coveralls.io/github/wavevision/class-name?branch=master)
 [![npm](https://img.shields.io/npm/v/@wavevision/class-name)](https://www.npmjs.com/package/@wavevision/class-name)
 
-Create and format BEM class names for React components. The formatter uses [simplified](https://github.com/csswizardry/inuit.css) BEM syntax.
+Create and format BEM class names for React components. The formatter uses [simplified](https://github.com/inuitcss) BEM syntax.
 
 ## Installation
 
