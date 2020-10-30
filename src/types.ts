@@ -25,7 +25,7 @@ export interface ClassNameFormatter<P = Props, S = State> {
   readonly compose: (...classNames: string[]) => string;
   readonly create: (
     newClass: string,
-    subBlock?: boolean,
+    block?: boolean,
     excludeModifiers?: boolean,
   ) => ClassNameFormatter<P, S>;
   readonly element: (className: string, ...modifiers: Modifiers) => string;

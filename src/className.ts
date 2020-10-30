@@ -23,8 +23,8 @@ const className = <P = Props, S = State>(
       return composeClassNames(baseClass, modifiers);
     },
     compose: (...classNames) => join(classNames),
-    create: (newClass, subBlock = true, excludeModifiers = false) => {
-      if (subBlock) {
+    create: (newClass, block = true, excludeModifiers = false) => {
+      if (block) {
         newClass = `${baseClass}${BLOCK_DELIMITER}${newClass}`;
       }
       return className(
