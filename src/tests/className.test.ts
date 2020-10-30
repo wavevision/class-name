@@ -8,7 +8,7 @@ describe('class-name/className', () => {
     });
   });
   const cn = className('test-class', () => ({ custom: () => 'custom' }));
-  const testClassName = cn({}, {});
+  const testClassName = cn();
   describe('block', () => {
     it('returns block class name', () => {
       expect(testClassName.block('something')).toEqual(
@@ -30,9 +30,9 @@ describe('class-name/className', () => {
     it('creates new formatter', () => {
       const newTestClassName = testClassName.create('new-class', false, true);
       expect(newTestClassName.block()).toEqual('new-class');
-      const anotherTestClassName = testClassName.create('sub');
+      const anotherTestClassName = testClassName.create('block');
       expect(anotherTestClassName.block(undefined, 'modifier')).toEqual(
-        'test-class-sub test-class-sub--custom test-class-sub--modifier',
+        'test-class-block test-class-block--custom test-class-block--modifier',
       );
     });
   });
