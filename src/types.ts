@@ -1,5 +1,8 @@
 import { USE_VALUE } from './constants';
 
+export type Props = Record<string, unknown>;
+export type State = Props;
+
 export type Modifiers = Array<string | null | undefined>;
 
 export type ModifierFunction<P, S> = (props: P, state: S) => unknown;

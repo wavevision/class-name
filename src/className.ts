@@ -1,9 +1,9 @@
 import processModifiers, { filter } from './utils/processModifiers';
 import composeClassNames, { join } from './utils/composeClassNames';
 import { ELEMENT_DELIMITER, SUB_BLOCK_DELIMITER } from './constants';
-import { ClassNameFormatter, ModifiersCallback } from './types';
+import { ClassNameFormatter, ModifiersCallback, Props, State } from './types';
 
-const className = <P = {}, S = {}>(
+const className = <P = Props, S = State>(
   baseClass: string,
   modifiersCallback?: ModifiersCallback<P, S>,
 ) => (props = {} as P, state = {} as S): ClassNameFormatter<P, S> => ({
