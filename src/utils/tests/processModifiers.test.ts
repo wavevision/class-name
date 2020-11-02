@@ -24,13 +24,12 @@ describe('class-name/utils/processModifiers', () => {
     it('returns empty array', () => {
       expect(
         processModifiers(
-          props => {
+          ({ props }) => {
             if (props.nullableProp) {
               return {};
             }
           },
-          testProps,
-          {},
+          { props: testProps, state: {} },
         ),
       ).toEqual([]);
     });
@@ -40,8 +39,7 @@ describe('class-name/utils/processModifiers', () => {
       expect(
         processModifiers<TestProps, TestState>(
           () => ({ someProp: true, nullableProp: true, visible: true }),
-          testProps,
-          testState,
+          { props: testProps, state: testState },
         ),
       ).toEqual(['someProp', 'visible']);
     });
@@ -49,12 +47,11 @@ describe('class-name/utils/processModifiers', () => {
       expect(
         processModifiers<TestProps>(
           () => ({
-            customModifier: props => props.someProp,
+            customModifier: ({ props }) => props.someProp,
             anotherCustomModifier: () => 'use-this',
-            omittedCustomModifier: props => props.nullableProp !== null,
+            omittedCustomModifier: ({ props }) => props.nullableProp !== null,
           }),
-          testProps,
-          {},
+          { props: testProps, state: {} },
         ),
       ).toEqual(['customModifier', 'use-this']);
     });
@@ -65,8 +62,7 @@ describe('class-name/utils/processModifiers', () => {
             someOtherProp: USE_VALUE,
             nullableProp: USE_VALUE,
           }),
-          testProps,
-          {},
+          { props: testProps, state: {} },
         ),
       ).toEqual(['one']);
     });

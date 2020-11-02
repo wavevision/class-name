@@ -1,46 +1,49 @@
-import processModifiers, { filter } from './utils/processModifiers';
+import processModifiers, { filter, unique } from './utils/processModifiers';
 import composeClassNames, { join } from './utils/composeClassNames';
-import { ELEMENT_DELIMITER, SUB_BLOCK_DELIMITER } from './constants';
+import { ELEMENT_DELIMITER, BLOCK_DELIMITER } from './constants';
 import { ClassNameFormatter, ModifiersCallback, Props, State } from './types';
 
 const className = <P = Props, S = State>(
   baseClass: string,
   modifiersCallback?: ModifiersCallback<P, S>,
-) => (props = {} as P, state = {} as S): ClassNameFormatter<P, S> => ({
-  baseClass,
-  block: (...modifiers) => {
-    if (typeof modifiersCallback === 'function') {
-      modifiers = Array.from(
-        new Set(
-          processModifiers<P, S>(modifiersCallback, props, state).concat(
-            ...filter(modifiers),
-          ),
-        ),
-      );
-    }
-    return composeClassNames(baseClass, modifiers);
-  },
-  compose: (...classNames) => join(classNames),
-  create: (newClass, subBlock = true, excludeModifiers = false) => {
-    if (subBlock) {
-      newClass = `${baseClass}${SUB_BLOCK_DELIMITER}${newClass}`;
-    }
-    return className(
-      newClass,
-      excludeModifiers ? undefined : modifiersCallback,
-    )(props);
-  },
-  element: (className, ...modifiers) =>
-    composeClassNames(
-      `${baseClass}${ELEMENT_DELIMITER}${className}`,
-      modifiers,
-    ),
-  extra: (className, prefix = '') => {
-    if (prefix) {
-      return `${prefix}${SUB_BLOCK_DELIMITER}${className}`;
-    }
-    return className;
-  },
-});
+) => (parameters: { props?: P; state?: S } = {}): ClassNameFormatter<P, S> => {
+  const requiredParameters = {
+    props: parameters.props || ({} as P),
+    state: parameters.state || ({} as S),
+  };
+  return {
+    baseClass,
+    block: (...modifiers) => {
+      if (typeof modifiersCallback === 'function') {
+        modifiers = unique(
+          processModifiers(modifiersCallback, requiredParameters),
+          filter(modifiers),
+        );
+      }
+      return composeClassNames(baseClass, modifiers);
+    },
+    compose: (...classNames) => join(classNames),
+    create: (newClass, block = true, excludeModifiers = false) => {
+      if (block) {
+        newClass = `${baseClass}${BLOCK_DELIMITER}${newClass}`;
+      }
+      return className(
+        newClass,
+        excludeModifiers ? undefined : modifiersCallback,
+      )(requiredParameters);
+    },
+    element: (className, ...modifiers) =>
+      composeClassNames(
+        `${baseClass}${ELEMENT_DELIMITER}${className}`,
+        modifiers,
+      ),
+    extra: (className, prefix = '') => {
+      if (prefix) {
+        return `${prefix}${BLOCK_DELIMITER}${className}`;
+      }
+      return className;
+    },
+  };
+};
 
 export default className;
