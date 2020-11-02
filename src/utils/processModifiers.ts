@@ -42,7 +42,6 @@ const processModifiers = <P = Props, S = State>(
       }
     }
   }
-
   return modifiers;
 };
 

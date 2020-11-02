@@ -49,16 +49,16 @@ const componentClassName = className<ComponentProps, ComponentState>(
     // if stringProp value is truthy then the value will be used
     stringProp: USE_VALUE,
     // use callback for custom modifiers, string returned will be used
-    customModifier: props => (props.nullableProp ? 'custom' : null),
+    customModifier: ({ props }) => (props.nullableProp ? 'custom' : null),
     // if a non-string truthy value is returned, key will be used
-    anotherModifier: (props, state) => state.visible,
+    anotherModifier: ({ state }) => state.visible,
   }),
 );
 
 // We can also have modifiers defined only if some condition is met
 const anotherClassName = className<ComponentProps, ComponentState>(
   'another-class',
-  (props, state) => {
+  ({ props, state }) => {
     if (props.nullableProp !== null) {
       // the whole set of modifiers will be created only if nullableProp is not null
       return { stringProps: USE_VALUE, customModifier: () => true };
@@ -72,8 +72,8 @@ const anotherClassName = className<ComponentProps, ComponentState>(
 
 const Component: FunctionComponent<ComponentProps> = props => {
   const [visible] = useState<ComponentState['visible']>(false);
-  const className = componentClassName(props, { visible });
-  const nextClassName = anotherClassName(props, { visible });
+  const className = componentClassName({ props, state: { visible } });
+  const nextClassName = anotherClassName({ props, state: { visible } });
   return (
     <div className={className.block('inline-modifier')}>
       <div className={nextClassName.block()} />

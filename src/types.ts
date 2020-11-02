@@ -4,7 +4,7 @@ export type Props = Record<string, unknown>;
 export type State = Props;
 export type Parameters<P = Props, S = State> = { props: P; state: S };
 
-export type Modifiers = Array<string | null | undefined>;
+export type Modifiers = Array<boolean | string | null | undefined>;
 
 export type ModifierFunction<P = Props, S = State> = (
   parameters: Parameters<P, S>,
