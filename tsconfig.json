@@ -6,5 +6,9 @@
     "resolveJsonModule": false,
     "target": "es5"
   },
-  "include": ["./*.js", "./src/**/*"]
+  "include": [
+    "./*.js",
+    "./.eslintrc.js",
+    "./src/**/*"
+  ]
 }

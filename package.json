@@ -33,8 +33,7 @@
   "homepage": "https://github.com/wavevision/class-name",
   "devDependencies": {
     "@types/jest": "^26.0.15",
-    "@wavevision/coding-standard": "^5.2.1",
-    "coveralls": "^3.0.9",
+    "@wavevision/coding-standard": "^6.0.2",
     "eslint": "^7.12.1",
     "eslint-plugin-jest": "^24",
     "jest": "^26.6.1",
@@ -44,7 +43,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production run-s clean ts-build",
-    "ci": "run-s ts eslint prettier test-coverage-report",
+    "ci": "run-s ts eslint prettier test-coverage",
     "clean": "rm -rf dist/*",
     "eslint": "eslint src --cache --ext .ts",
     "eslint-fix": "yarn eslint --fix",
@@ -60,7 +59,6 @@
     "preversion": "yarn fix",
     "test": "jest",
     "test-coverage": "yarn test --coverage",
-    "test-coverage-report": "yarn test-coverage && cat temp/coverage/lcov.info | coveralls",
     "ts": "tsc",
     "ts-build": "yarn ts --project tsconfig.build.json"
   }
